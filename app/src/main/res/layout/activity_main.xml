@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@drawable/decorgrand"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/titre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/titre"
+        android:text="Cachot sordide \n Niveau 10"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:layout_gravity="center"
+        android:fontFamily="serif-monospace"
+        android:layout_weight="0.0"
+        android:textColor="@color/white"/>
+
+
+    <!-- Partie supérieure avec le fragment -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/window"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+    </androidx.fragment.app.FragmentContainerView>
+
+    <!-- Boutons alignés horizontalement en bas -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <ImageButton
+            android:id="@+id/bouton_guilde"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/guilde_icon_d"
+            android:contentDescription="guilde"
+            >
+        </ImageButton>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"/>
+
+
+        <ImageButton
+            android:id="@+id/bouton_donjon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/donjon_icon"
+            android:contentDescription="donjon"
+            android:layout_weight="1"
+            android:layout_gravity="center">
+        </ImageButton>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"/>
+
+
+        <ImageButton
+            android:id="@+id/bouton_forge"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/forge_icon"
+            android:contentDescription="forge"
+            android:layout_weight="1"
+            android:layout_gravity=""
+            >
+        </ImageButton>
+    </LinearLayout>
+</LinearLayout>
+
+
