@@ -24,7 +24,7 @@ class Forge : Fragment(), managerListItem.OnItemClickListener {
     val listeUpgrade = arrayListOf(
         ListeAmelioration("Améliration de Dégat ","Augmente les dégats de votre click de +1 !",100) ,
         ListeAmelioration("Améliration d'Or par click ","Augmente l'or que vous recenvez par click de +1 !",100) ,
-        ListeAmelioration("Améliration des primes","Quand vous tué un monstre vous recevez une prime ! Cette améliration l'augmente !",500)
+        ListeAmelioration("Améliration des primes","Augmente la prime reçu quand vous tuez un monstre. Attention les monstres deviennent plus fort aussi !",500)
     )
 
 

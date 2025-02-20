@@ -72,13 +72,6 @@ class Donjon : Fragment() {
             boutonMonstre.setImageResource(listeMonstre[randomMonstre].imageId)
             nomInfo.text = "${listeMonstre[randomMonstre].nom} ${compteurHp}/${listeMonstre[randomMonstre].hp * stats.lvl_prime.value!!}"
         }
-        else{
-            randomMonstre = stats.id_monstre.value!!
-            compteurHp = stats.hp_restant.value!!
-            //Gestion de l'affiche du monstre celon le chiffre random
-            boutonMonstre.setImageResource(listeMonstre[randomMonstre].imageId)
-            nomInfo.text = "${listeMonstre[randomMonstre].nom} ${compteurHp}/${listeMonstre[randomMonstre].hp * stats.lvl_prime.value!!}"
-        }
         if(stats.id_monstre.value!! > 99){ //au dessus de 100 donc un boss
             randomMonstre = stats.id_monstre.value!! - 100
             compteurHp = stats.hp_restant.value!!
@@ -86,6 +79,14 @@ class Donjon : Fragment() {
             boutonMonstre.setImageResource(listeBoss[randomMonstre].imageId)
             nomInfo.text = "${listeBoss[randomMonstre].nom} ${compteurHp}/${listeBoss[randomMonstre].hp * stats.lvl_prime.value!!}"
         }
+        else{
+            randomMonstre = stats.id_monstre.value!!
+            compteurHp = stats.hp_restant.value!!
+            //Gestion de l'affiche du monstre celon le chiffre random
+            boutonMonstre.setImageResource(listeMonstre[randomMonstre].imageId)
+            nomInfo.text = "${listeMonstre[randomMonstre].nom} ${compteurHp}/${listeMonstre[randomMonstre].hp * stats.lvl_prime.value!!}"
+        }
+
         //Bug actuelle : Crash quand on essaye de re avoir le boss depuis la forge par exemple
 
 
