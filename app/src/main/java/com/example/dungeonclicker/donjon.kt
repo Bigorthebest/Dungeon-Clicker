@@ -24,6 +24,8 @@ class Donjon : Fragment() {
     var nbr_boss : Int = 1
     //Compteur avant proc du boss
     var compt_boss : Int = 0
+    //Nombre de monstrer a tuer avant l'apparition du boss
+    var apparition_boss : Int = 10
 
     //Liste des monstres et leurs informations
     private val listeMonstre = arrayListOf(
@@ -72,7 +74,7 @@ class Donjon : Fragment() {
             boutonMonstre.setImageResource(listeMonstre[randomMonstre].imageId)
             nomInfo.text = "${listeMonstre[randomMonstre].nom} ${compteurHp}/${listeMonstre[randomMonstre].hp * stats.lvl_prime.value!!}"
         }
-        if(stats.id_monstre.value!! > 99){ //au dessus de 100 donc un boss
+        else if(stats.id_monstre.value!! > 99){ //au dessus de 100 donc un boss
             randomMonstre = stats.id_monstre.value!! - 100
             compteurHp = stats.hp_restant.value!!
             //Gestion de l'affiche du BOSS celon le chiffre random
@@ -116,7 +118,7 @@ class Donjon : Fragment() {
                 toast.setGravity(Gravity.CENTER or Gravity.CENTER_HORIZONTAL, 0, -(hauteurEcran / 4))
                 toast.show()
                 //On reassigne le nouveau monstre (ou le boss)
-                if(compt_boss > 2){
+                if(compt_boss > apparition_boss){
                     compt_boss = 0
                     //Mettre le random ici quand y en aura un
                     randomMonstre = 0
@@ -136,7 +138,13 @@ class Donjon : Fragment() {
                 }
             }
             //Sinon on update la boite de dialogue
-            nomInfo.text = "${listeMonstre[randomMonstre].nom} ${compteurHp}/${listeMonstre[randomMonstre].hp * stats.lvl_prime.value!!}"
+
+            if(stats.id_monstre.value!! > 99) { //au dessus de 100 donc un boss
+                nomInfo.text = "${listeBoss[randomMonstre].nom} ${compteurHp}/${listeBoss[randomMonstre].hp * stats.lvl_prime.value!!}"
+            }
+            else {
+                nomInfo.text = "${listeMonstre[randomMonstre].nom} ${compteurHp}/${listeMonstre[randomMonstre].hp * stats.lvl_prime.value!!}"
+            }
             //On augmente l'or
             compteurOr += stats.lvl_OrnClick.value!!
             stats.updateOr(compteurOr)

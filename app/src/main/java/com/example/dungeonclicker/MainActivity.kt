@@ -12,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.activity.viewModels
 import android.content.SharedPreferences
+import android.content.pm.ActivityInfo
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         //Initialization des fragments
         donjonFragment = Donjon()
