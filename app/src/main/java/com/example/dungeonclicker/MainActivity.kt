@@ -114,7 +114,7 @@ class MainActivity : AppCompatActivity() {
         val lvl_degat = sharedPreferences.getInt("DEGAT",1)
         val lvl_click = sharedPreferences.getInt("CLICK",1)
         val lvl_prime = sharedPreferences.getInt("PRIME",1)
-        val mort = sharedPreferences.getInt("PRIME",0)
+        val mort = sharedPreferences.getInt("MORT",0)
         stats.updateOr(saveOr)
         stats.lvl_degat.value = lvl_degat
         stats.lvl_OrnClick.value = lvl_click
