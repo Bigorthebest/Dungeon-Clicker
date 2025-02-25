@@ -14,6 +14,7 @@ import androidx.activity.viewModels
 import android.content.SharedPreferences
 import android.content.pm.ActivityInfo
 import android.widget.TextView
+import androidx.lifecycle.enableSavedStateHandles
 import androidx.recyclerview.widget.RecyclerView
 
 
@@ -57,7 +58,6 @@ class MainActivity : AppCompatActivity() {
 
        //On ecoute chaque bouton
         boutonDonjon.setOnClickListener {
-            saveData()
             titre.text = "Donjon"
             //On change les icons des menus en bas
             boutonForge.setImageResource(R.drawable.forge_icon)
@@ -67,7 +67,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         boutonForge.setOnClickListener {
-            saveData()
             titre.text = "Forge"
             //On change les icons des menus en bas
             boutonForge.setImageResource(R.drawable.forge_icon_active)
@@ -77,7 +76,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         boutonGuilde.setOnClickListener {
-            saveData()
             titre.text = "Guilde"
             //On change les icons des menus en bas
             boutonForge.setImageResource(R.drawable.forge_icon)
@@ -132,5 +130,22 @@ class MainActivity : AppCompatActivity() {
         editor.putInt("MORT",0)
         editor.apply() // Appliquer les changements
     }
+
+    //Fonction qui sauveguarde la progression à la fermeture de l'appli
+    override fun onDestroy() {
+        saveData()
+        super.onDestroy()
+    }
+    //Fonction pour étre sur que ça soit bien sauveguarder
+    override fun onPause() {
+        saveData()
+        super.onPause()
+    }
+    //Fonction pour être sur, sur, sur
+    override fun onStop() {
+        saveData()
+        super.onStop()
+    }
+
 }
 

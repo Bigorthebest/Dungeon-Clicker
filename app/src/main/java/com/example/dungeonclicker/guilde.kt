@@ -24,12 +24,7 @@ class Guilde : Fragment() {
 
         //Gestion des deux bouton de se fragment
         val boutonReset = view.findViewById<Button>(R.id.bouton_reset)
-        val boutonSave = view.findViewById<Button>(R.id.bouton_save)
 
-        boutonSave.setOnClickListener{
-            //On utilise ceci pour recuperer la fonction saveData definie dans mainactivity
-            (requireActivity() as? MainActivity)?.saveData()
-        }
         boutonReset.setOnClickListener{
             stats.or.value = 0
             stats.lvl_prime.value = 1
