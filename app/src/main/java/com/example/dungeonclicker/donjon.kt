@@ -89,9 +89,6 @@ class Donjon : Fragment() {
             nomInfo.text = "${listeMonstre[randomMonstre].nom} ${compteurHp}/${listeMonstre[randomMonstre].hp * stats.lvl_prime.value!!}"
         }
 
-        //Bug actuelle : Crash quand on essaye de re avoir le boss depuis la forge par exemple
-
-
 
         //Observer les changements de taille de texte depuis le ViewModel
         stats.or.observe(viewLifecycleOwner) { nombre ->
@@ -103,15 +100,23 @@ class Donjon : Fragment() {
             compteurHp -= stats.lvl_degat.value!!
             stats.hp_restant.value = compteurHp
             if(compteurHp < 1){
-                //On oublie pas la prime au joueurs !
-                compteurOr += listeMonstre[randomMonstre].prime + (stats.lvl_prime.value!! * 100)
+                //Nouvelle notif pour le joueurs
+                val notifPrime = layoutInflater.inflate(R.layout.toast_prime, null)
+                //On oublie pas la prime au joueurs ! Mais il faut regarder si c'est un boss
+                if (stats.id_monstre.value!! > 99){ //Donc un boss
+                    compteurOr += listeBoss[randomMonstre].prime + (stats.lvl_prime.value!! * 100)
+                    val texteToats = notifPrime.findViewById<TextView>(R.id.textView_toast)
+                    texteToats.text = "Prime de ${listeBoss[randomMonstre].prime + (stats.lvl_prime.value!! * 100)} reçu !"
+                }
+                else{
+                    compteurOr += listeMonstre[randomMonstre].prime + (stats.lvl_prime.value!! * 100)
+                    val texteToats = notifPrime.findViewById<TextView>(R.id.textView_toast)
+                    texteToats.text = "Prime de ${listeMonstre[randomMonstre].prime + (stats.lvl_prime.value!! * 100)} reçu !"
+                }
                 //On update les choses en lien avec les morts d'un mostre
                 stats.killboard(stats.monster_mort.value!! + 1)
                 compt_boss++
-                //Nouvelle notif de prime pour le joueurs
-                val notifPrime = layoutInflater.inflate(R.layout.toast_prime, null)
-                val texteToats = notifPrime.findViewById<TextView>(R.id.textView_toast)
-                texteToats.text = "Prime de ${listeMonstre[randomMonstre].prime + (stats.lvl_prime.value!! * 100)} reçu !"
+                //Affichage de la notif pour le joueurs
                 val toast = Toast(requireContext())
                 toast.view = notifPrime
                 toast.duration = Toast.LENGTH_LONG
